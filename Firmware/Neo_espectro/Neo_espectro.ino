@@ -6,16 +6,16 @@
     XDeSIG 2021
 */
 
-#include <Adafruit_NeoPixel.h>
+#include <Adafruit_NeoPixel.h> // Written by Phil "Paint Your Dragon"
 #define PIN_NEO A4
 #define NUM_LEDS 25
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUM_LEDS, PIN_NEO, NEO_GRB + NEO_KHZ800);
 
 
-#include <fix_fft.h>          // biblioteca para implementar Transformada rapida de Fourier (FFT). Autor: Dimitrios P. Bouras, mantenida por Enrique Condes
+#include <fix_fft.h>          // Biblioteca para implementar Transformada rapida de Fourier (FFT). Autor: Dimitrios P. Bouras, mantenida por Enrique Condes
 char re[128], im[128];        // Matrices de muestras / resultados de la FFT
 byte i;                       // indice para almacenar as mostras
-int dat;                      // variable da amplitude da frecuencia
+int dat;                      // Variable da amplitude da frecuencia
 
 int F[5] = {2, 3, 6, 9, 15}; // Frecuencias a mostrar en pantalla *73,8Hz
 
