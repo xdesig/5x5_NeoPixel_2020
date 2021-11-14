@@ -1,21 +1,22 @@
 /*
     Visualizador de espectro de audio de cinco bandas
     Usando a pantalla de 25 Neopixeles "https://github.com/xdesig/5x5_NeoPixel_2020"
+    Transformada rapida de Fourier (FFT). Autor: Dimitrios P. Bouras, mantenida por Enrique Condes
     Pulsando SR aumentamos a amplificacion, Sl baixamos a amplificacion
     O Led vermello indica maxima amplificación o laranxa media e o verde minima. 
     XDeSIG 2021
 */
 
-#include <Adafruit_NeoPixel.h> // Written by Phil "Paint Your Dragon"
+#include <Adafruit_NeoPixel.h>
 #define PIN_NEO A4
 #define NUM_LEDS 25
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUM_LEDS, PIN_NEO, NEO_GRB + NEO_KHZ800);
 
 
-#include <fix_fft.h>          // Biblioteca para implementar Transformada rapida de Fourier (FFT). Autor: Dimitrios P. Bouras, mantenida por Enrique Condes
+#include <fix_fft.h>          // biblioteca para implementar FFT
 char re[128], im[128];        // Matrices de muestras / resultados de la FFT
 byte i;                       // indice para almacenar as mostras
-int dat;                      // Variable da amplitude da frecuencia
+int dat;                      // variable da amplitude da frecuencia
 
 int F[5] = {2, 3, 6, 9, 15}; // Frecuencias a mostrar en pantalla *73,8Hz
 
@@ -76,6 +77,7 @@ void loop() {
     }
     delay(100);
   }
+  // *** Comprobamos si o valor de amplificacion e medio e acendemos o led laranxa
   if (amp > 20 and amp < 30) {
     digitalWrite (Red, 0);
     digitalWrite (Orn, 1);
